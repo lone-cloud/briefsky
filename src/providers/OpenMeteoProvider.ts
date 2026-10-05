@@ -147,7 +147,7 @@ export class OpenMeteoProvider implements Provider {
     const currentDailyIndex = data.current_weather.time < data.daily.time[1] ? 0 : 1;
     const currentHourlyIndex = data.hourly.time
       .map((t: any, i: number) => [Math.abs(t - data.current_weather.time), i])
-      .sort((a: [number, number], b: [number, number]) => a[0] > b[0])[0][1];
+      .sort((a: [number, number], b: [number, number]) => a[0] - b[0])[0][1];
 
     const current: CurrentWeather = {
       timestamp: new Date(data.current_weather.time * 1000),
